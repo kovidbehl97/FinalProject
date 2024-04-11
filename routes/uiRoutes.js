@@ -11,18 +11,50 @@ router.engine(".hbs",
 router.set("view engine", ".hbs");
 router.set("views", path.join(__dirname, "../views"));
 
-// Render the UI form
-router.get("/form", (req, res) => {
-    res.render("form"); 
+// Home page route
+router.get('/', (req, res) => {
+    // Fetch movies data from the database or other data source
+    const movies = [
+        { title: 'Movie 1', year: 2022 },
+        { title: 'Movie 2', year: 2021 }
+    ];
+
+    // Render the movies page with movies data
+    res.render('movies', { movies });
 });
 
-// Handle form submission
-router.post("/form", (req, res) => {
-    // Process the form data
-    const formData = req.body;
-    // Perform any necessary actions (e.g., saving data to the database)
-    // Redirect or render a response
-    res.redirect("/success");
+// Movie details page route
+router.get('/movie/:id', (req, res) => {
+    // Fetch movie details by ID from the database or other data source
+    const movie = { title: 'Movie 1', year: 2022 };
+
+    // Render the movie details page with movie data
+    res.render('movieDetails', { movie });
 });
+
+// Add movie form route
+router.get('/addMovie', (req, res) => {
+    res.render('addMovie');
+});
+
+// Update movie form route
+router.get('/updateMovie/:id', (req, res) => {
+    // Fetch movie details by ID from the database or other data source
+    const movie = { title: 'Movie 1', year: 2022 };
+
+    // Render the update movie form with movie data
+    res.render('updateMovie', { movie });
+});
+
+// Login form route
+router.get('/login', (req, res) => {
+    res.render('login');
+});
+
+// Register form route
+router.get('/register', (req, res) => {
+    res.render('register');
+});
+
 
 module.exports = router;

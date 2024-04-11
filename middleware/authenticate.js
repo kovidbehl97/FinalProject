@@ -1,19 +1,23 @@
-// middleware/authenticate.js
+const jwt = require("jsonwebtoken");
+require("dotenv").config(); // Load environment variables
 
-const jwt = require('jsonwebtoken');
+const secret = process.env.SECRET_KEY;
+const mongoURI = process.env.MONGODB_URI;
 
-const authenticate = (req, res, next) => {
-    const token = req.headers.authorization;
+const authenticateJWT = (req, res, next) => {
+    const token = req.headers.authorization?.split(" ")[1];
+
     if (!token) {
-        return res.status(401).json({ message: 'Authentication failed. No token provided.' });
+        return res.status(401).json({ message: "Unauthorized" });
     }
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    jwt.verify(token, secret, (err, decoded) => {
+        if (err) {
+            return res.status(403).json({ message: "Invalid token" });
+        }
         req.user = decoded;
         next();
-    } catch (error) {
-        res.status(401).json({ message: 'Authentication failed. Invalid token.' });
-    }
+    });
 };
 
-module.exports = authenticate;
+module.exports = { authenticateJWT, mongoURI };
