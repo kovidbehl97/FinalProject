@@ -21,7 +21,6 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
     .catch(err => console.error(err));
 
 // Routes
-app.use('/auth', authRoutes);
 app.use('/movies', movieRoutes);
 app.use('/ui', uiRoutes);
 
