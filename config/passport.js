@@ -7,13 +7,13 @@ module.exports = function (passport) {
   // Local Strategy
   passport.use(
     // Create local strategy with email as username
-    new LocalStrategy({ usernameField: "email" }, async function (
-      email,
+    new LocalStrategy({ usernameField: "username" }, async function (
+      username,
       password,
       done
     ) {
       // Use email to query user
-      let query = { email: email };
+      let query = { username: username };
       let user = await User.findOne(query)
       // If user is not found
       if (!user) {

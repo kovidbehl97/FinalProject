@@ -2,14 +2,15 @@ const express = require("express");
 const router = express.Router();
 const Movie = require("../models/Movie");
 
-async function fetchMoviesForPage(pageNumber, pageSize) {
-    const skipCount = (pageNumber - 1) * pageSize;
-    const movies = await Movie.find().skip(skipCount).limit(pageSize);
-    return movies;
-}
 
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next(); // User is authenticated, allow access to the next middleware or route handler
+    }
+    res.redirect('/login'); // Redirect to the login page if user is not authenticated
+  }
 // GET all movies
-router.get('/movies', async (req, res) => {
+router.get('/movies',ensureAuthenticated, async (req, res) => {
     // Parse the page number from URL query parameters
     const currentPage = parseInt(req.query.page) || 1; // Default to page 1 if no page parameter is provided
 
@@ -41,12 +42,12 @@ router.get('/movies', async (req, res) => {
     }
 });
 // GET add movie form
-router.get("/addMovies", (req, res) => {
+router.get("/addMovies",ensureAuthenticated, (req, res) => {
   res.render("addMovies"); 
 });
 
 // POST add movie
-router.post('/addMovie', async (req, res) => {
+router.post('/addMovie',ensureAuthenticated, async (req, res) => {
     try {
         // Extract movie data from the request body
         const { plot, runtime, num_mflix_comments, poster, title, fullplot, released, lastupdated, year, type } = req.body;
@@ -118,7 +119,7 @@ router.post('/addMovie', async (req, res) => {
 
 
 // GET update movie form by ID
-router.get("/updateMovie/:id", async (req, res) => {
+router.get("/updateMovie/:id",ensureAuthenticated, async (req, res) => {
     try {
         const movieId = req.params.id; // Get movieId from query parameters
         const movie = await Movie.findById(movieId);
@@ -171,7 +172,7 @@ router.get("/updateMovie/:id", async (req, res) => {
   
 
 // POST update movie by ID
-router.post('/updateMovie/:id', async (req, res) => {
+router.post('/updateMovie/:id',ensureAuthenticated, async (req, res) => {
     try { 
         const movieId = req.params.id
         // Extract movie ID and updated data from the request body
@@ -254,7 +255,7 @@ router.post('/updateMovie/:id', async (req, res) => {
 
 // DELETE route for deleting a movie// DELETE route for deleting a movie
 // DELETE route for deleting a movie
-router.post('/deleteMovie', async (req, res) => {
+router.post('/deleteMovie',ensureAuthenticated, async (req, res) => {
     try {
         // Extract the movie ID from the request body
         const movieId = req.body.movieId;

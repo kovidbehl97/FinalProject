@@ -67,7 +67,8 @@ require("./config/passport")(passport);
 
 // Routes
 app.use("/", movieRoutes);
-app.use(authRoutes);
+app.use("/", authRoutes);
+
 
 // Error handling middleware
 app.use((err, req, res, next) => {
