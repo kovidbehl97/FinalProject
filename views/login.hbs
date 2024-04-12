@@ -1,0 +1,19 @@
+{{!< main}}
+{{#if errors}}
+  <div class="errors">
+    <ul>
+      {{#each errors}}
+        <li>{{ this.msg }}</li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}
+<form class="form-container" action="/login" method="POST">
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+  
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required>
+  
+  <button class="my-button" type="submit">Login</button>
+</form>

@@ -1,18 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Movie</title>
-</head>
-<body>
-    <h1>Add Movie</h1>
-    <!-- Add form fields for adding a new movie -->
+<form class="form-container" action="/addMovie" method="POST">
+    <label for="plot">Plot:</label>
+    <textarea id="plot" name="plot" rows="4" cols="50"></textarea><br>
 
-    <form action="/addMovie" method="POST">
-        <!-- Add form fields -->
-        <button type="submit">Add Movie</button>
-        <button type="button" onclick="window.location.href='/'">Cancel</button>
-    </form>
-</body>
-</html>
+    <label for="genres">Genres (comma-separated):</label>
+    <input type="text" id="genres" name="genres"><br>
+
+    <label for="runtime">Runtime:</label>
+    <input type="number" id="runtime" name="runtime"><br>
+
+    <label for="rated">Rated:</label>
+    <input type="text" id="rated" name="rated"><br>
+
+    <label for="cast">Cast (comma-separated):</label>
+    <input type="text" id="cast" name="cast"><br>
+
+    <label for="poster">Poster URL:</label>
+    <input type="text" id="poster" name="poster"><br>
+
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title"><br>
+
+    <label for="fullplot">Full Plot:</label>
+    <textarea id="fullplot" name="fullplot" rows="4" cols="50"></textarea><br>
+
+    <label for="languages">Languages (comma-separated):</label>
+    <input type="text" id="languages" name="languages"><br>
+
+    <label for="released">Released:</label>
+    <input type="date" id="released" name="released"><br>
+
+    <label for="directors">Directors (comma-separated):</label>
+    <input type="text" id="directors" name="directors"><br>
+
+    <label for="writers">Writers (comma-separated):</label>
+    <input type="text" id="writers" name="writers"><br>
+
+    <label for="awardsWins">Awards Wins:</label>
+    <input type="number" id="awardsWins" name="awards.wins"><br>
+
+    <label for="awardsNominations">Awards Nominations:</label>
+    <input type="number" id="awardsNominations" name="awards.nominations"><br>
+
+    <label for="awardsText">Awards Text:</label>
+    <input type="text" id="awardsText" name="awards.text"><br>
+
+    <label for="lastupdated">Last Updated:</label>
+    <input type="date" id="lastupdated" name="lastupdated"><br>
+
+    <label for="year">Year:</label>
+    <input type="number" id="year" name="year"><br>
+
+    <label for="imdbRating">IMDB Rating:</label>
+    <input type="number" id="imdbRating" name="imdb.rating"><br>
+
+    <label for="imdbVotes">IMDB Votes:</label>
+    <input type="number" id="imdbVotes" name="imdb.votes"><br>
+
+    <label for="imdbId">IMDB ID:</label>
+    <input type="number" id="imdbId" name="imdb.id"><br>
+
+    <label for="countries">Countries (comma-separated):</label>
+    <input type="text" id="countries" name="countries"><br>
+
+    <label for="type">Type:</label>
+    <input type="text" id="type" name="type"><br>
+
+    <label for="tomatoesViewerRating">Tomatoes Viewer Rating:</label>
+    <input type="number" id="tomatoesViewerRating" name="tomatoes.viewer.rating"><br>
+
+    <label for="tomatoesNumReviews">Tomatoes Number of Reviews:</label>
+    <input type="number" id="tomatoesNumReviews" name="tomatoes.viewer.numreviews"><br>
+
+    <label for="tomatoesMeter">Tomatoes Meter:</label>
+    <input type="number" id="tomatoesMeter" name="tomatoes.viewer.meter"><br>
+
+    <label for="tomatoesProduction">Tomatoes Production:</label>
+    <input type="text" id="tomatoesProduction" name="tomatoes.production"><br>
+
+    <label for="tomatoesLastUpdated">Tomatoes Last Updated:</label>
+    <input type="date" id="tomatoesLastUpdated" name="tomatoes.lastupdated"><br>
+
+    <input class="my-button" type="submit" value="Add Movie">
+</form>
